@@ -1,0 +1,9 @@
+create server.js and app.js file
+npm init-y
+npm i nodemon
+npm i express
+create .env file
+npm i dotenv
+
+//tarungarg727_db_user
+//Iik219Q2HvdN3Sgd
