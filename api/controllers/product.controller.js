@@ -39,13 +39,18 @@ export const createProduct = async(req,res,next)=>{
 
 export const getProduct = async(req,res,next) => {
     try{
-        const products = await Product.find({})
-        if (products==0){
+        const {category} = req.query;
+
+        const filter = category && category !== "all" ? {category} : {};
+
+        const products = await Product.find(filter)
+        if (!products && products.length==0){
             return res.status(400).json({
                 message: "Empty"
             })
         }
-        return res.status(201).json({
+
+        return res.status(200).json({
             data: products,
             message:"products retreived" 
         })

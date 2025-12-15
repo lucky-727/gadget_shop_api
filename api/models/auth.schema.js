@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import {addressSchema} from "./address.schema.js"
+
 
 const userSchema = new mongoose.Schema(
     {
@@ -14,6 +16,7 @@ const userSchema = new mongoose.Schema(
             type:String,
             required:true,
         },
+        addresses: [addressSchema],
         role:{
             type: String,
             enum: ["user","admin"],

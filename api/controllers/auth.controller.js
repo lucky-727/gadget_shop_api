@@ -12,7 +12,7 @@ export const signupController = async(req,res,next)=>{
                 message: "All feilds are required",
             })
         }
-
+        
         const isUserExist = await Auth.findOne({email});
 
         if (isUserExist){
@@ -87,7 +87,9 @@ export const signinController = async(req,res,next) =>{
                 message: "login Successfull",
                 data: {
                     id: isEmailExist._id,
-                    name: isEmailExist.userName
+                    userName: isEmailExist.userName,
+                    address: isEmailExist.addresses,
+                    role: isEmailExist.role
                 } 
             })
         }
@@ -141,9 +143,9 @@ export const getMyProfile = async(req,res,next) =>{
                 message: "No user found"
             })        
         }
-    
+        console.log(user,"test")
         return res.status(200).json({
-            data: user.userName,
+            data: user,
         })
     }catch(err){
         return res.status(500).json({
