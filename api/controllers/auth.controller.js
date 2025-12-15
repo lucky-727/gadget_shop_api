@@ -34,8 +34,8 @@ export const signupController = async(req,res,next)=>{
 
         res.cookie("token",token,{
             httpOnly:true,
-            sameSize:"none",
-            secure:false,
+            sameSite:"none",
+            secure:process.env.NODE_ENV === "production",
             maxAge: 24*60*60*1000,
         })
 
@@ -79,8 +79,8 @@ export const signinController = async(req,res,next) =>{
 
         res.cookie("token",token,{
             httpOnly:true,
-            sameSize:"strict",
-            secure:false,
+            sameSite:"none",
+            secure:process.env.NODE_ENV === "production",
             maxAge: 24*60*60*1000,
         })
             return res.status(200).json({
@@ -158,8 +158,8 @@ export const logoutController = async(req,res,next)=>{
     try{
         res.clearCookie("token",{
             httpOnly: true,
-            sameSite: "strict",
-            secure:false,
+            sameSite: "none",
+            secure:process.env.NODE_ENV === "production",
         })
         return res.status(200).json({
             message:"Logout Successfully"
