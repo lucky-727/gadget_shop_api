@@ -4,8 +4,9 @@ import {db} from "./utils/db.js"
 //db connection:
 db();
 
+const PORT = process.env.PORT || 5000;
 
 // localhost run :
-app.listen(process.env.port, ()=>{
-    console.log(`running at localhost port ${process.env.port}`)
+app.listen(PORT, ()=>{
+    console.log(`running at localhost port ${PORT}`)
 })
